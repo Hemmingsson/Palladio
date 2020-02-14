@@ -1,0 +1,137 @@
+doctype html
+head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    title Paladio
+    link(rel='stylesheet' href='styles.scss')
+
+
+//-//////////////////////////////////////
+//- Slider Controls
+//-//////////////////////////////////////
+
+aside
+    header
+        h1 Paladio
+        p generative architecture
+    
+    // Randomize
+    input(type="button" value="Randomzie")
+    
+    // Level Count
+    input.level-control(
+        type="range" 
+        min="0" 
+        max="2"
+    )
+
+    // House Width
+    input.size-control(
+        type="range" 
+        min="30" 
+        max="90" 
+        data-prop="--house-width" 
+        data-target=".house" 
+        data-unit="%"
+    )
+    
+    // House Height
+    input.size-control(
+        type="range" 
+        min="60" 
+        max="98" 
+        data-prop="--house-height" 
+        data-target=".house" 
+        data-unit="%"
+    )
+    
+    // Coulmn Count
+    input.column-control(
+        type="range" 
+        min="1" 
+        max="9"
+    ) 
+    
+    // Coulmn Width
+    input.size-control(
+        type="range" 
+        min="40" 
+        max="100" 
+        data-prop="--column-width" 
+        data-target=".column" 
+        data-unit="px"
+    ) 
+    
+    // Roof Width
+    input.size-control(
+        type="range" 
+        min="60" 
+        max="120" 
+        data-prop="--roof-height" 
+        data-target=".roof" 
+        data-unit="px"
+    ) 
+
+    // Frieze Height
+    input.size-control(
+        type="range" 
+        min="10" max="80" 
+        data-prop="--frieze-height" 
+        data-target=".frieze" 
+        data-unit="px"
+    )
+
+    // Foundation height
+    input.size-control(
+        type="range" 
+        min="10" 
+        max="80" 
+        data-prop="--foundation-height" 
+        data-target=".foundation" 
+        data-unit="px"
+    )
+
+    .style
+        
+        input#dorian(type='radio' name='style' value='dorian')
+        label(for='dorian') Dorian
+        
+        input#ionian(type='radio' name='style' value='ionian')
+        label(for='ionian') Jonian
+        
+        input#corinthian(type='radio' name='style' value='corinthian')
+        label(for='corinthian') Corinthian
+
+
+//-//////////////////////////////////////
+//- The House
+//-//////////////////////////////////////
+main
+    .house
+        .block.roof
+            include includes/roof.pug
+            .list
+            .list
+            .list.egg
+            .list.festong
+        .block.frieze
+        .block.decoration
+        .block.levels
+            each val in [1, 2, 3]
+                .level
+                    each val in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                        .column
+                            .top
+                                include includes/column-top.pug
+                            .middle
+                                include includes/column-middle.pug
+                            .bottom
+                                include includes/column-bottom.pug
+                        .wall
+                            .window
+                .floor
+        .block.foundation
+
+script(src='scripts.js')
+

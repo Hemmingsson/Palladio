@@ -1,0 +1,349 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --column-width: 40px;
+    --house-width: 80%;
+    --house-height: 80%;
+    --roof-height: 100px;
+    --frieze-height: 100px;
+    --foundation-height: 100px;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background: #F0F0F0;
+}
+
+// SVG GENERAL
+svg {
+    width: 100%;
+    height: 100%;
+}
+
+.path {
+    // Extend this when applying path style
+    stroke: #000;
+    vector-effect: non-scaling-stroke;
+}
+
+//////////////////////////////////////
+// LAYOUT
+//////////////////////////////////////
+
+aside {
+    width: 15vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    margin-left: 20px;
+    input {
+        width: 100%;
+    }
+}
+
+main {
+    width: 85vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    margin: 20px;
+    border-radius: 2px;
+}
+
+//////////////////////////////////////
+// CONTROLS
+//////////////////////////////////////
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #D3D3D3;
+    outline: none;
+    margin: 20px 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+            appearance: none;
+    width: 14px;
+    height: 14px;
+    background-color: white;
+    cursor: pointer;
+    z-index: 100;
+    background-size: 3px;
+    border-radius: 2px;
+}
+
+.style {
+    align-items: stretch;
+    display: flex;
+    input[type="radio"]:checked + label {
+        background-color: rgba(0,0,0, .2);
+    }
+    input[type="radio"] {
+        display: none;
+    }
+    label {
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+    }
+}
+
+
+//////////////////////////////////////
+// THE HOUSE
+//////////////////////////////////////
+
+.house {
+    width: var(--house-width);
+    height: var(--house-height);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    opacity: 0;
+}
+
+.block {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.roof {
+    height: var(--roof-height);
+    flex-grow: 0;
+    width: 105%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    svg {
+        width: 99.5%;
+    }
+    path {
+        @extend .path;
+    }
+    .list {
+        border: 1px solid #000;
+        border-top: none;
+        flex-grow: 0;
+        max-height: 6px;
+        min-height: 6px;
+        width: 98%;
+        background-position: 50%;
+        background-repeat: repeat-x;
+        border-top: none;
+        &:nth-child(2) {
+            width: 99%;
+        }
+        &:nth-child(3) {
+            width: 98.5%;
+        }
+    }
+    .festong {
+        background-image: url(assets/fetong-list.svg);
+        max-height: 10px;
+        min-height: 15px;
+        background-size: 14px;
+        background-position-y: 0;
+        width: 97%;
+    }
+    .egg {
+        background-image: url(assets/egg-list.svg);
+        min-height: 12px;
+        flex-shrink: 0;
+        background-size: 10px;
+    }
+}
+
+.frieze {
+    height: var(--frieze-height);
+    flex-grow: 0;
+    outline: 1px solid black;
+    flex-shrink: 0;
+}
+
+.decoration {
+    align-items: center;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    height: 30px;
+    flex-grow: 0;
+    justify-content: center;
+    min-height: 24px;
+    width: 103%;
+    z-index: 100;
+    &:before,
+    &:after {
+        background-color: #FFF;
+        background-position: 50%;
+        background-repeat: repeat-x;
+        background-size: 13px;
+        outline: 1px solid #000;
+        content: "";
+        display: block;
+        height: 50%;
+        width: 98%;
+    }
+    &:before {
+        background-image: url(assets/theeth-list.svg);
+        border-bottom: none;
+        background-position-y: -1px;
+    }
+    &:after {
+        border-radius: 5px;
+        width: 99%;
+    }
+}
+
+.foundation {
+    height: var(--foundation-height);
+    flex-grow: 0;
+    outline: 1px solid black;
+    width: calc(100% + 8px);
+    margin-top: 1px;
+    background-color: white;
+    margin-top: -1px;
+    z-index: 100;
+    position: relative;
+}
+
+.levels {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 0;
+}
+
+.level {
+    flex-grow: 1;
+    display: flex;
+    height: 0;
+    justify-content: space-between;
+    align-items: stretch;
+    position: relative;
+    .wall:last-child {
+        display: none !important;
+    }
+    &:after {
+        border-top: 1px solid #000;
+        bottom: 0;
+        content: "";
+        height: 5px;
+        left: 50%;
+        outline: 1px solid #000;
+        outline-offset: 2px;
+        position: absolute;
+        transform: translate(-50%);
+        width: calc(100% - 36px);
+        z-index: 1;
+        opacity: .6;
+    }
+}
+
+.wall {
+    width: 10px;
+    flex-grow: 1;
+    align-items: flex-end;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    .window {
+        background-color: grey;
+        background-image: url(assets/half-fill.svg);
+        height: 40%;
+        max-width: 50px;
+        background-size: 3px;
+        width: 90%;
+        z-index: 2;
+    }
+    &.door {
+        .window {
+            margin-bottom: 0;
+            height: 50%;
+            flex-grow: 0;
+            background-image: url(assets/full-fill.svg);
+            border-radius: 1000px 1000px 0 0;
+            background-color: #D3D3D3;
+        }
+    }
+}
+
+.column {
+    width: var(--column-width);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+    .bottom,
+    .top {
+        z-index: 5;
+        position: relative;
+    }
+    .top {
+        margin-top: -2px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        svg {
+            display: none;
+        }
+    }
+    .bottom {
+        width: 70%;
+        margin-bottom: -1px;
+    }
+    .middle {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-shrink: 1;
+        justify-content: space-around;
+        overflow: hidden;
+        text-align: center;
+        width: 50%;
+        transform: translateY(-1px) scaleY(1.08);
+        svg {
+            height: calc(100% + 2px);
+        }
+        path {
+            @extend .path;
+        }
+    }
+}
+
+.house.corinthian .corinthian,
+.house.ionian .ionian,
+.house.dorian .dorian {
+    display: inline-block;
+}
+
+svg.dorian {
+    width: 70%;
+    background-color: white;
+    transform: translateX(.2%);
+}
+
+
+.floor {
+    outline: 1px solid black;
+    min-height: 10px;
+    flex-shrink: 0;
+    background-color: white;
+    position: relative;
+    z-index: 100;
+}
