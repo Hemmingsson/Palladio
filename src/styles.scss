@@ -1,3 +1,10 @@
+$color-text: #43494A;
+$color-bcg: #F0F0F0;
+$color-house-bcg: #FFF;
+$color-house-stroke: #000;
+
+@import url("https://fonts.googleapis.com/css?family=Unna&display=swap");
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -16,7 +23,9 @@
 body {
     display: flex;
     height: 100vh;
-    background: #F0F0F0;
+    background: $color-bcg;
+    color: $color-text;
+    font-family: "Unna", serif;
 }
 
 // SVG GENERAL
@@ -27,7 +36,7 @@ svg {
 
 .path {
     // Extend this when applying path style
-    stroke: #000;
+    stroke: $color-house-stroke;
     vector-effect: non-scaling-stroke;
 }
 
@@ -45,6 +54,7 @@ aside {
     input {
         width: 100%;
     }
+    font-size: 14px;
 }
 
 main {
@@ -52,22 +62,39 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: white;
+    background: $color-house-bcg;
     margin: 20px;
     border-radius: 2px;
+    box-shadow: 0 .5px 5.3px rgba(0, 0, 0, .016),
+    0 1.8px 17.9px rgba(0, 0, 0, .024),
+    0 8px 80px rgba(0, 0, 0, .04)
+    ;
 }
 
 //////////////////////////////////////
 // CONTROLS
 //////////////////////////////////////
 
+header {
+    margin-bottom: 10px;
+    h1 {
+        font-size: 40px;
+        letter-spacing: .03em;
+    }
+    p {
+        font-size: 20px;
+        opacity: .8;
+    }
+}
+
 input[type="range"] {
     -webkit-appearance: none;
     width: 100%;
-    height: 6px;
-    background: #D3D3D3;
+    height: 2px;
+    background: rgba(0,0,0, .2);
     outline: none;
-    margin: 20px 0;
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -75,18 +102,22 @@ input[type="range"]::-webkit-slider-thumb {
             appearance: none;
     width: 14px;
     height: 14px;
-    background-color: white;
-    cursor: pointer;
+    background-color: #FFF;
+    border: 1px solid black;
+    cursor: ew-resize;
     z-index: 100;
     background-size: 3px;
-    border-radius: 2px;
+    border-radius: 10px;
 }
 
 .style {
     align-items: stretch;
     display: flex;
+    margin-bottom: 20px;
+    margin-top: 10px;
     input[type="radio"]:checked + label {
-        background-color: rgba(0,0,0, .2);
+        outline: 1px solid $color-house-stroke;
+        background-color: white;
     }
     input[type="radio"] {
         display: none;
@@ -95,7 +126,19 @@ input[type="range"]::-webkit-slider-thumb {
         width: 100%;
         text-align: center;
         cursor: pointer;
+        padding: .2em .5em;
+        background-color: rgba(0,0,0, .05);
+        outline: 1px solid rgba(0,0,0, .05);
     }
+}
+
+input[type="button"] {
+    -webkit-appearance: none;
+            appearance: none;
+    background-color: white;
+    outline: 1px solid $color-house-stroke;
+    padding: .4em .5em;
+    margin-bottom: 40px;
 }
 
 
@@ -133,7 +176,7 @@ input[type="range"]::-webkit-slider-thumb {
         @extend .path;
     }
     .list {
-        border: 1px solid #000;
+        border: 1px solid $color-house-stroke;
         border-top: none;
         flex-grow: 0;
         max-height: 6px;
@@ -168,7 +211,7 @@ input[type="range"]::-webkit-slider-thumb {
 .frieze {
     height: var(--frieze-height);
     flex-grow: 0;
-    outline: 1px solid black;
+    outline: 1px solid $color-house-stroke;
     flex-shrink: 0;
 }
 
@@ -185,11 +228,11 @@ input[type="range"]::-webkit-slider-thumb {
     z-index: 100;
     &:before,
     &:after {
-        background-color: #FFF;
+        background-color: $color-house-bcg;
         background-position: 50%;
         background-repeat: repeat-x;
         background-size: 13px;
-        outline: 1px solid #000;
+        outline: 1px solid $color-house-stroke;
         content: "";
         display: block;
         height: 50%;
@@ -209,10 +252,10 @@ input[type="range"]::-webkit-slider-thumb {
 .foundation {
     height: var(--foundation-height);
     flex-grow: 0;
-    outline: 1px solid black;
+    outline: 1px solid $color-house-stroke;
     width: calc(100% + 8px);
     margin-top: 1px;
-    background-color: white;
+    background-color: $color-house-bcg;
     margin-top: -1px;
     z-index: 100;
     position: relative;
@@ -236,12 +279,12 @@ input[type="range"]::-webkit-slider-thumb {
         display: none !important;
     }
     &:after {
-        border-top: 1px solid #000;
+        border-top: 1px solid $color-house-stroke;
         bottom: 0;
         content: "";
         height: 5px;
         left: 50%;
-        outline: 1px solid #000;
+        outline: 1px solid $color-house-stroke;
         outline-offset: 2px;
         position: absolute;
         transform: translate(-50%);
@@ -334,16 +377,16 @@ input[type="range"]::-webkit-slider-thumb {
 
 svg.dorian {
     width: 70%;
-    background-color: white;
+    background-color: $color-house-bcg;
     transform: translateX(.2%);
 }
 
 
 .floor {
-    outline: 1px solid black;
+    outline: 1px solid $color-house-stroke;
     min-height: 10px;
     flex-shrink: 0;
-    background-color: white;
+    background-color: $color-house-bcg;
     position: relative;
     z-index: 100;
 }

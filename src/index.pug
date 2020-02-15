@@ -14,12 +14,15 @@ head
 aside
     header
         h1 Paladio
-        p generative architecture
+        p Generative Architecture
     
+
     // Randomize
     input(type="button" value="Randomzie")
     
+    
     // Level Count
+    p Levels
     input.level-control(
         type="range" 
         min="0" 
@@ -27,6 +30,7 @@ aside
     )
 
     // House Width
+    p Width
     input.size-control(
         type="range" 
         min="30" 
@@ -37,9 +41,10 @@ aside
     )
     
     // House Height
+    p Height
     input.size-control(
         type="range" 
-        min="60" 
+        min="53" 
         max="98" 
         data-prop="--house-height" 
         data-target=".house" 
@@ -47,6 +52,7 @@ aside
     )
     
     // Coulmn Count
+    p Columns
     input.column-control(
         type="range" 
         min="1" 
@@ -54,6 +60,7 @@ aside
     ) 
     
     // Coulmn Width
+    p Column Width
     input.size-control(
         type="range" 
         min="40" 
@@ -62,36 +69,8 @@ aside
         data-target=".column" 
         data-unit="px"
     ) 
-    
-    // Roof Width
-    input.size-control(
-        type="range" 
-        min="60" 
-        max="120" 
-        data-prop="--roof-height" 
-        data-target=".roof" 
-        data-unit="px"
-    ) 
 
-    // Frieze Height
-    input.size-control(
-        type="range" 
-        min="10" max="80" 
-        data-prop="--frieze-height" 
-        data-target=".frieze" 
-        data-unit="px"
-    )
-
-    // Foundation height
-    input.size-control(
-        type="range" 
-        min="10" 
-        max="80" 
-        data-prop="--foundation-height" 
-        data-target=".foundation" 
-        data-unit="px"
-    )
-
+    p Column Style
     .style
         
         input#dorian(type='radio' name='style' value='dorian')
@@ -102,6 +81,41 @@ aside
         
         input#corinthian(type='radio' name='style' value='corinthian')
         label(for='corinthian') Corinthian
+    
+    // Roof Width
+    p Roof Height
+    input.size-control(
+        type="range" 
+        min="60" 
+        max="120" 
+        data-prop="--roof-height" 
+        data-target=".roof" 
+        data-unit="px"
+    ) 
+
+    // Frieze Height
+    p Frieze Height
+    input.size-control(
+        type="range" 
+        min="10" max="80" 
+        data-prop="--frieze-height" 
+        data-target=".frieze" 
+        data-unit="px"
+    )
+
+    // Foundation height
+    p Foundation Height
+    input.size-control(
+        type="range" 
+        min="10" 
+        max="80" 
+        data-prop="--foundation-height" 
+        data-target=".foundation" 
+        data-unit="px"
+    )
+    
+
+
 
 
 //-//////////////////////////////////////

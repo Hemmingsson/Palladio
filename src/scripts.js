@@ -1,16 +1,19 @@
 const getRandomInt = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
 const controlColumns = (levels, slider) => {
   levels.forEach((level, i) => {
-    level.querySelectorAll(".column").forEach((element, i) => {
+    const columns = level.querySelectorAll(".column");
+    const wall = level.querySelectorAll(".wall");
+
+    columns.forEach((element, i) => {
       toggleVisebility(element, i > slider.value);
     });
 
-    level.querySelectorAll(".wall").forEach((wall, i) => {
+    wall.forEach((wall, i) => {
       toggleVisebility(wall, i > slider.value - 1);
       toggleDoor(wall, slider, i);
     });
@@ -36,9 +39,9 @@ const setVisibility = (elements, slider) => {
 const toggleVisebility = (element, statment) => {
   if (statment) {
     element.style.display = "none";
-  } else {
-    element.style.display = "flex";
+    return;
   }
+  element.style.display = "flex";
 };
 
 const randomizeSlider = slider => {
@@ -47,10 +50,10 @@ const randomizeSlider = slider => {
   slider.dispatchEvent(event);
 };
 
-const randomizeStyle = (elements) => {
-  const index = getRandomInt(0, elements.length-1)
-  elements[index].click()
-}
+const randomizeStyle = elements => {
+  const index = getRandomInt(0, elements.length - 1);
+  elements[index].click();
+};
 
 const updateSize = e => {
   const slider = e.target;
@@ -63,14 +66,19 @@ const updateSize = e => {
   });
 };
 
-const randomzie = (columnControl, levelControl, styleControls, sizeControls) =>{
+const randomzie = (
+  columnControl,
+  levelControl,
+  styleControls,
+  sizeControls
+) => {
   randomizeSlider(columnControl);
   randomizeSlider(levelControl);
   randomizeStyle(styleControls);
   sizeControls.forEach(slider => {
     randomizeSlider(slider);
   });
-}
+};
 
 const init = () => {
   const sizeControls = document.querySelectorAll(".size-control");
@@ -78,7 +86,6 @@ const init = () => {
   const columnControl = document.querySelector(".column-control");
   const styleControls = document.querySelectorAll(".style label");
   const randomizeButton = document.querySelector("[type='button']");
-  
 
   const house = document.querySelector(".house");
   const levels = document.querySelectorAll(".level");
@@ -98,22 +105,19 @@ const init = () => {
   });
 
   styleControls.forEach(slider => {
-    slider.addEventListener("click", (e) =>{
+    slider.addEventListener("click", e => {
       house.className = "house";
-      house.classList.add(e.target.htmlFor)
+      house.classList.add(e.target.htmlFor);
     });
   });
 
-  randomizeButton.addEventListener("click", (e) =>{
-    randomzie(columnControl, levelControl, styleControls, sizeControls)
+  randomizeButton.addEventListener("click", e => {
+    randomzie(columnControl, levelControl, styleControls, sizeControls);
   });
 
-  randomzie(columnControl, levelControl, styleControls, sizeControls)
+  randomzie(columnControl, levelControl, styleControls, sizeControls);
 
   house.style.opacity = 1;
 };
 
 document.addEventListener("DOMContentLoaded", init);
-
-
-
