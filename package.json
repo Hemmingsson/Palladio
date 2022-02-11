@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel src/index.pug",
-    "build": "parcel build src/index.pug --public-url ./",
+    "build": "parcel build src/index.pug --public-url ./ --no-minify",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Paradise Architects",
   "devDependencies": {
+    "cssnano": "^5.0.17",
+    "postcss": "^8.4.6",
     "pug": "^3.0.2",
     "sass": "^1.49.7"
   }
