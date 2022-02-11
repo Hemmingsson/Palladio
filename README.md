@@ -2,7 +2,7 @@
    <img align="center" src="https://i.imgur.com/ABmNogW.png">
 </p>
 
-# Paladio
+# Palladio
 Generative Architecture
 
 
