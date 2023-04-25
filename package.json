@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "Paradise Architects",
   "devDependencies": {
-    "cssnano": "^5.0.17",
+    "cssnano": "^6.0.0",
     "postcss": "^8.4.6",
     "pug": "^3.0.2",
     "sass": "^1.49.7"
